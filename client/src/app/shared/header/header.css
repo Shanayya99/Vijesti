@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.header {
+  background-color: #1e88e5;
+  color: #fff;
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  width: 100%;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1rem;
+  align-items: center;
+  margin-right: 100px;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #cce4ff;
+  cursor: pointer;
+}
+
+.nav-link.active {
+  border-bottom: 2px solid #fff;
+}
+
+.nav-link.login {
+  background-color: #fff;
+  color: #1e88e5;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.nav-link.login:hover {
+  background-color: #e3f2fd;
+}
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 1000; 
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s linear;
+}
+
+.main-menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; 
+    }
+
+    .main-menu {
+        display: none; 
+        position: absolute; 
+        top: 60px; 
+        left: 0;
+        width: 100%;
+        background-color: var(--color-primary); 
+        flex-direction: column; 
+        align-items: center;
+        padding: 20px 0;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 999; 
+    }
+
+    .main-menu.active {
+        display: flex; 
+    }
+
+    .main-menu ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 0; 
+    }
+
+    .main-menu li {
+        margin: 10px 0; 
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .main-menu a, .logout-link {
+        display: block; 
+        padding: 10px;
+    }
+
+    .user-info {
+        margin: 15px 0 !important;
+        padding: 10px;
+        background-color: #001638; 
+        border-radius: 5px;
+        width: auto;
+    }
+}

@@ -1,0 +1,32 @@
+<div class="main-content-container">
+    <h2>Administratorski panel - Zahtjevi za registraciju</h2>
+
+    <div *ngIf="errorMessage && pendingRequests.length === 0" class="info-message">{{ errorMessage }}</div>
+    <div *ngIf="errorMessage && pendingRequests.length > 0" class="server-error-message">{{ errorMessage }}</div>
+
+    <table *ngIf="pendingRequests.length > 0" class="data-table user-requests-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ime i Prezime</th>
+                <th>Korisničko ime</th>
+                <th>Email</th>
+                <th>Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of pendingRequests">
+                <td>{{ user.id }}</td>
+                <td>{{ user.ime }} {{ user.prezime }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <button class="btn-approve" (click)="approveUser(+user.id)">Odobri</button>
+                    <button class="btn-reject" (click)="rejectUser(+user.id)">Odbij</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p class="return-link"><a routerLink="/home">Povratak na početnu stranicu</a></p>
+</div>

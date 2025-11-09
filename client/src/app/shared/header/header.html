@@ -1,0 +1,43 @@
+<header class="app-header">
+  <div class="header-content">
+    <div class="logo">
+      <a routerLink="/home">Vijesti</a>
+    </div>
+
+    <div class="menu-toggle" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ng-container *ngIf="currentUser$ | async as user">
+      <nav class="main-menu" [ngClass]="{'active': menuOpen}">
+        <ul>
+          <li><a routerLink="/pocetna" routerLinkActive="active">Početna</a></li>
+          <li><a routerLink="/home" routerLinkActive="active" class="vijesti">Vijesti</a></li>
+          <li><a routerLink="/change-password" routerLinkActive="active">Promijeni Šifru</a></li>
+          <li *ngIf="userService.isAdmin()">
+            <a routerLink="/admin/requests" routerLinkActive="active" class="admin-link">Odobri korisnika</a>
+          </li>
+          <li *ngIf="userService.isAdmin()">
+            <a routerLink="/admin/create-article" routerLinkActive="active">Napiši članak</a>
+          </li>
+          <li class="user-info">
+            Prijavljen: {{ user.username }} ({{ user.role | uppercase }})
+          </li>
+          <li><a (click)="logout()" class="logout-link">Izloguj se</a></li>
+        </ul>
+      </nav>
+    </ng-container>
+
+    <ng-container *ngIf="!(currentUser$ | async)">
+      <nav class="main-menu" [ngClass]="{'active': menuOpen}">
+        <ul>
+          <li><a routerLink="/login" routerLinkActive="active" class="nav-link login">Prijava</a></li>
+          <li><a routerLink="/register" routerLinkActive="active" class="nav-link">Registracija</a></li>
+        </ul>
+      </nav>
+    </ng-container>
+
+  </div>
+</header>

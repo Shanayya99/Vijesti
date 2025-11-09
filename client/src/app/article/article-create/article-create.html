@@ -1,0 +1,34 @@
+<div class="content-container">
+    <h2>Napiši Novi Članak</h2>
+    
+    <div *ngIf="successMessage" class="info-message success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="server-error-message">{{ errorMessage }}</div>
+
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group">
+            <label for="naslov">Naslov članka:</label>
+            <input id="naslov" type="text" formControlName="naslov" required>
+            <div *ngIf="articleForm.get('naslov')?.invalid && articleForm.get('naslov')?.touched" class="error-message">Naslov je obavezan.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="deskripcija">Opis/Sadržaj:</label>
+            <textarea id="deskripcija" formControlName="deskripcija" rows="6" required></textarea>
+            <div *ngIf="articleForm.get('deskripcija')?.invalid && articleForm.get('deskripcija')?.touched" class="error-message">Opis je obavezan.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="img">URL Slike:</label>
+            <input id="img" type="url" formControlName="img" required>
+            <div *ngIf="articleForm.get('img')?.invalid && articleForm.get('img')?.touched" class="error-message">
+                <span *ngIf="articleForm.get('img')?.errors?.['required']">URL Slike je obavezan.</span>
+                <span *ngIf="articleForm.get('img')?.errors?.['pattern']">Format URL-a nije ispravan.</span>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="articleForm.invalid">Objavi Članak</button>
+        
+        <p class="return-link"><a routerLink="/home">Nazad na Početnu</a></p>
+    </form>
+</div>

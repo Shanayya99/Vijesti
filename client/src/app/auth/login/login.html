@@ -1,0 +1,37 @@
+<div class="auth-container">
+    <h2>Prijava na sistem</h2>
+    <!-- KLJUČNO: Forma mora imati (ngSubmit) događaj za pozivanje login logike -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
+      
+      <div class="form-group">
+        <label for="username">Korisničko ime:</label>
+        <input id="username" type="text" formControlName="username" required>
+        <!-- Validacija klijentske strane -->
+        <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error-message">
+          Korisničko ime je obavezno.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Šifra:</label>
+        <input id="password" type="password" formControlName="password" required>
+        <!-- Validacija klijentske strane -->
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+          Šifra je obavezna.
+        </div>
+      </div>
+  
+      <!-- Ispis greške ukoliko se unese pogrešna šifra ili je server nedostupan -->
+      <div *ngIf="errorMessage" class="server-error-message">
+        {{ errorMessage }}
+      </div>
+  
+      <!-- Dugme za slanje (SUBMIT) -->
+      <button type="submit" [disabled]="loginForm.invalid">Prijavi se</button> 
+  
+      <p class="links">
+        Novi korisnik? <a routerLink="/register">Registracija</a><br>
+        Promjena šifre? <a routerLink="/change-password">Promjena šifre</a>
+      </p>
+    </form>
+</div>

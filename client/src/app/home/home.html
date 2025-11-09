@@ -1,0 +1,82 @@
+<div class="main-content-container">
+    
+    <h2>{{ viewMode === 'home' ? 'Pogledajte najaktuelnije novosti:' : 'Najčitanije Knjige u 2025:' }}</h2>
+
+    <div *ngIf="errorMessage" class="server-error-message">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="info-message">Učitavanje podataka...</div>
+
+    <button *ngIf="viewMode === 'books'" 
+            class="btn-back btn-primary" 
+            (click)="setViewMode('home')" 
+            style="margin-bottom: 20px;">
+        &larr; Nazad na Glavnu Stranicu
+    </button>
+
+    <div *ngIf="viewMode === 'home'" class="dashboard-grid">
+        
+        <div class="action-card book-card" (click)="setViewMode('books')">
+            <img src="https://narodna-knjiga.com/wp-content/uploads/2023/12/najcitanije-knjige-svih-vremena-narodna-knjiga-crna-gora-1.jpg" alt="Top Knjige" class="card-icon">
+            <h3>Top Knjige</h3>
+            <p>Pogledajte koje knjige su se najviše čitale u 2025.</p>
+            <button class="btn-secondary">Prikaži Listu</button>
+        </div>
+        
+        <div></div>
+
+        <div class="articles-list-container">
+            <div *ngIf="articles.length === 0 && !loading" class="info-message">
+                Nema objavljenih vijesti u sistemu.
+            </div>
+            
+            <div class="article-grid">
+                <div class="article-card" *ngFor="let article of articles">
+                    <img [src]="article.img" 
+                         onerror="this.onerror=null; this.src='assets/knjiga.jpg';"
+                         alt="{{ article.naslov }}" 
+                         class="card-icon article-image">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ article.naslov }}</h3>
+                        <p class="card-text">{{ article.deskripcija | slice:0:500 }}...</p>
+                        
+                        <div class="article-metadata">
+                            <span>Kreirano: {{ article.created_at | date:'mediumDate' }}</span>
+                            <span *ngIf="article.updated_at" class="updated-date"> <br> Ažurirano: {{ article.updated_at | date:'mediumDate' }}</span>
+                        </div>
+
+                        <div class="card-actions" *ngIf="userService.isAdmin()">
+                            <button class="btn-delete" (click)="deleteArticle(article.id, article.naslov)">Obriši</button>
+                            <button class="btn-edit" (click)="editArticle(article.id)">Izmijeni</button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="viewMode === 'books'">
+        
+        <div *ngIf="books.length === 0 && !loading" class="info-message">
+            Nema pronađenih knjiga u sistemu.
+        </div>
+
+        <table *ngIf="books.length > 0" class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Naslov</th>
+                    <th>Autor</th>
+                    <th>Godina</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of books">
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.naslov }}</td>
+                    <td>{{ book.autor }}</td>
+                    <td>{{ book.godina }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
