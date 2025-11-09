@@ -60,5 +60,4 @@ Aplikacija podržava dvije vrste korisnika:
 2. Instaliraj potrebne pakete:
    ```bash
    npm i
-nakon toga,  ```bash 
-ng serve --open
+   ng serve --open
