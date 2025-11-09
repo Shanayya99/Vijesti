@@ -1,8 +1,3 @@
-/* ---------------------------------------------------------------------- */
-/* GLOBALNI STILOVI - KONAČNA VERZIJA PROJEKTA */
-/* ---------------------------------------------------------------------- */
-
-/* Import Google Font: Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 /* --- BOJE --- */
@@ -29,7 +24,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-/* KLJUČNI FIX ZA FOOTER: app-root i main moraju rasti da bi gurnuli footer */
 app-root {
     display: flex;
     flex-direction: column;
@@ -38,7 +32,7 @@ app-root {
     flex-grow: 1; 
 }
 main {
-    flex-grow: 1; /* GLAVNI KONTEJNER RASTE */
+    flex-grow: 1; 
     display: flex;
     flex-direction: column;
 }
@@ -76,11 +70,10 @@ main {
     font-weight: 700;
 }
 
-/* Glavni meni na Desktopu */
 .main-menu {
     flex-grow: 1; 
     display: flex;
-    justify-content: flex-end; /* KLJUČNO: Gura meni na DESNU stranu */
+    justify-content: flex-end; 
     align-items: center;
 }
 .main-menu ul {
@@ -88,28 +81,26 @@ main {
     display: flex;
     padding: 0;
     margin: 0;
-    /* Uklonite justify-content: center; i koristite gap za razmak */
     gap: 20px; 
 }
 .main-menu li {
-    margin-left: 0; /* Uklonite stari margin-left */
-    /* KLJUČNA ISPRAVKA: osigurajte da tekst linka ne ide u više redova */
+    margin-left: 0; 
     white-space: nowrap; 
 }
 
 .main-menu a, .logout-link {
     color: white;
-    padding: 8px 10px; /* Manji padding */
+    padding: 8px 10px; 
     border-radius: 5px;
     font-weight: 500;
     transition: background-color 0.2s;
-    text-decoration: underline; /* Dodato da se vidi link */
-    text-decoration-color: rgba(255, 255, 255, 0); /* Skrivena podvlaka */
+    text-decoration: underline; 
+    text-decoration-color: rgba(255, 255, 255, 0); 
     transition: text-decoration-color 0.3s;
 }
 .main-menu a:hover, .logout-link:hover {
     background-color: #001638;
-    text-decoration: none; /* Uklanja podvlaku na hover */
+    text-decoration: none; 
 }
 
 .user-info {
@@ -123,7 +114,7 @@ main {
     color: #ccc;
     text-align: center;
     padding: 15px 0;
-    margin-top: auto; /* ZALJEPLJUJE FOOTER ZA DNO */
+    margin-top: auto; 
     font-size: 14px;
 }
 
@@ -137,7 +128,7 @@ main {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 .content-container form:has(textarea) {
-    max-width: 800px; /* Šira forma za kreiranje članka */
+    max-width: 800px; 
     padding: 30px;
 }
 textarea, input[type="text"], input[type="password"], input[type="email"], input[type="url"] {
@@ -169,7 +160,6 @@ button {
 }
 .data-table th { background-color: var(--color-primary); color: white; }
 
-/* Glavni grid za prikaz članka (Rješava problem 3 u redu) */
 .dashboard-grid, .article-grid {
     display: flex;
     gap: 20px; 
@@ -193,7 +183,6 @@ button {
     transition: transform 0.2s;
     overflow-wrap: break-word; 
 }
-/* Stilovi za Slike: KVAZI-KVADRATNE DIMENZIJE */
 .article-card .article-image, .action-card img {
     width: 100%; 
     height: 200px; 
